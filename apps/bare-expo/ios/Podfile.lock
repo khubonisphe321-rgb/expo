@@ -674,13 +674,14 @@ PODS:
     - ExpoModulesCore
   - ExpoSplashScreen (58.0.4):
     - ExpoModulesCore
-  - ExpoSQLite (58.0.8):
+  - ExpoSQLite (58.0.9):
     - ExpoModulesCore
-  - ExpoSQLite/Benchmarks (58.0.8):
+  - ExpoSQLite/Benchmarks (58.0.9):
     - ExpoModulesCore
     - ExpoModulesTestCore
-  - ExpoSQLite/Tests (58.0.8):
+  - ExpoSQLite/Tests (58.0.9):
     - ExpoModulesCore
+    - ExpoModulesTestCore
   - ExpoStoreReview (58.0.2):
     - ExpoModulesCore
   - ExpoSymbols (58.0.3):
@@ -4144,7 +4145,7 @@ SPEC CHECKSUMS:
   ExpoSMS: c8b282d16f6ed0846beeec28f59bdf9218199d91
   ExpoSpeech: c5197a19bf647a5f0d5766fa76fa597cc3139414
   ExpoSplashScreen: fe062a47cd483fcc6b936e4ff01d7db512c312b7
-  ExpoSQLite: 3f5b1262b02cb875f04a25c50959f06fa21f36f2
+  ExpoSQLite: 4f76b2f555883cfddd1c5c3f0416eee68b8bcfd3
   ExpoStoreReview: baec43b9560cbe6e03171afb26a011ffdd68cad5
   ExpoSymbols: 69fe4c95edb08f1b2df3f6c33d0af5ba69827fd4
   ExpoSystemUI: 178801ed9118232ba377f387a5b6a277c75cecd8
