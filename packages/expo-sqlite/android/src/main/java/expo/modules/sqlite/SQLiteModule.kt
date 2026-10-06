@@ -101,29 +101,30 @@ class SQLiteModule : Module() {
 
     // region NativeDatabase
 
-    Class(NativeDatabase::class) {
-      Constructor { databasePath: String, options: OpenDatabaseOptions, serializedData: ByteArray? ->
-        val database: NativeDatabase
-        if (serializedData != null) {
-          database = deserializeDatabase(serializedData, options)
-        } else {
-          // Try to find opened database for fast refresh
-          findCachedDatabase { it.databasePath == databasePath && it.openOptions == options && !options.useNewConnection }?.let {
-            it.addRef()
-            return@Constructor it
-          }
-
-          val dbPath = ensureDatabasePathExists(databasePath)
-          database = NativeDatabase(databasePath, options)
-          if (database.ref.sqlite3_open(dbPath) != NativeDatabaseBinding.SQLITE_OK) {
-            throw OpenDatabaseException(databasePath)
-          }
+    // A factory rather than a constructor, to match iOS, where a constructor can't return the cached instance.
+    Function("createNativeDatabase") { databasePath: String, options: OpenDatabaseOptions, serializedData: ByteArray? ->
+      val database: NativeDatabase
+      if (serializedData != null) {
+        database = deserializeDatabase(serializedData, options)
+      } else {
+        // Try to find opened database for fast refresh
+        findCachedDatabase { it.databasePath == databasePath && it.openOptions == options && !options.useNewConnection }?.let {
+          it.addRef()
+          return@Function it
         }
 
-        addCachedDatabase(database)
-        return@Constructor database
+        val dbPath = ensureDatabasePathExists(databasePath)
+        database = NativeDatabase(databasePath, options)
+        if (database.ref.sqlite3_open(dbPath) != NativeDatabaseBinding.SQLITE_OK) {
+          throw OpenDatabaseException(databasePath)
+        }
       }
 
+      addCachedDatabase(database)
+      return@Function database
+    }
+
+    Class(NativeDatabase::class) {
       AsyncFunction("initAsync") { database: NativeDatabase ->
         initDb(database)
       }.runOnQueue(moduleCoroutineScope)
