@@ -1,5 +1,19 @@
 # Changelog
 
+## 58.1.6
+
+### Patch Changes
+
+- `expo serve` now refuses to start on development exports that include server code. ([#50522](https://github.com/expo/expo/pull/50522) by [@ramonclaudio](https://github.com/ramonclaudio))
+- Load `.env` files in the bundle's mode in `expo export:embed` instead of keeping values loaded by a parent Expo process. ([#51227](https://github.com/expo/expo/pull/51227) by [@ramonclaudio](https://github.com/ramonclaudio))
+- Updated dependencies. ([#50522](https://github.com/expo/expo/pull/50522), [#51185](https://github.com/expo/expo/pull/51185))
+  - expo-server@58.0.4
+  - @expo/log-box-utils@58.0.2
+  - @expo/router-server@58.0.11
+  - @expo/log-box@58.0.12
+  - @expo/prebuild-config@58.0.11
+  - @expo/metro-config@58.0.10
+
 ## 58.1.5
 
 ### Patch Changes

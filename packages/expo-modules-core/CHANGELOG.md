@@ -1,5 +1,14 @@
 # Changelog
 
+## 58.0.15
+
+### Patch Changes
+
+- [Android] Fix release builds crashing at launch when the app uses an Expo Modules API 2.0 module, such as `expo-crypto`. R8 removed classes and members that the v2 runtime reaches through reflection and JNI. ([#51204](https://github.com/expo/expo/pull/51204) by [@Kudo](https://github.com/Kudo))
+- [iOS] Throw when JavaScript constructs a shared object class that has no way to build its native instance, instead of returning an object that fails at its first member access. ([#51171](https://github.com/expo/expo/pull/51171) by [@tsapeta](https://github.com/tsapeta))
+- Updated dependencies. ([#51129](https://github.com/expo/expo/pull/51129), [#51234](https://github.com/expo/expo/pull/51234))
+  - expo-modules-jsi@58.0.10
+
 ## 58.0.14
 
 ### Patch Changes
